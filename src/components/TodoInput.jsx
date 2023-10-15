@@ -3,8 +3,21 @@ import { useState } from 'react';
 function TodoInput({ onAddClicked }) {
   const [todoText, setTodoText] = useState('');
 
+  const handleAdd = () => {
+    if (todoText) {
+      onAddClicked && onAddClicked(todoText);
+      setTodoText('');
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleAdd();
+    }
+  };
+
   return (
-    <div>
+    <div className='todo-input'>
       <span>New Todo:</span>
       <input
         type='text'
@@ -12,8 +25,9 @@ function TodoInput({ onAddClicked }) {
         onChange={(event) => {
           setTodoText(event.target.value);
         }}
+        onKeyDown={handleKeyDown}
       />
-      <button onClick={() => onAddClicked && onAddClicked(todoText)}>Add</button>
+      <button onClick={handleAdd}>Add</button>
     </div>
   );
 }

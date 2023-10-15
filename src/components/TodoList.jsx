@@ -1,7 +1,9 @@
+import '../styles/TodoList.css';
+
 function TodoList(props) {
   return (
     <div>
-      <TodoEntryList todos={props.todos} onDoneChanged={props.onDoneChanged} filterFunction={(todo) => !todo.done}/>
+      <TodoEntryList todos={props.todos} onDoneChanged={props.onDoneChanged} filterFunction={(todo) => !todo.done} />
       <hr />
       <TodoEntryList todos={props.todos} onDoneChanged={props.onDoneChanged} filterFunction={(todo) => todo.done} />
     </div>
@@ -9,13 +11,11 @@ function TodoList(props) {
 }
 
 function TodoEntryList(props) {
-  console.log(props)
   return (
-    <dir>
-      {props.todos
-        .filter(props.filterFunction)
-        .map((todo) => (
-          <div key={todo.id}>
+    <div className='todo-list'>
+      {props.todos.filter(props.filterFunction).map((todo) => (
+        <div className="todo-entry" key={todo.id}>
+          <label>
             <input
               type='checkbox'
               checked={todo.done}
@@ -25,9 +25,10 @@ function TodoEntryList(props) {
               }}
             ></input>
             <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>{todo.text}</span>
-          </div>
-        ))}
-    </dir>
+          </label>
+        </div>
+      ))}
+    </div>
   );
 }
 
