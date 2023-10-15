@@ -3,9 +3,19 @@ import '../styles/TodoList.min.css';
 function TodoList(props) {
   return (
     <div className='todo-lists'>
-      <TodoEntryList todos={props.todos} onDoneChanged={props.onDoneChanged} filterFunction={(todo) => !todo.done} />
+      <TodoEntryList
+        todos={props.todos}
+        onDoneChanged={props.onDoneChanged}
+        onDeleteEntry={props.onDeleteEntry}
+        filterFunction={(todo) => !todo.done}
+      />
       <hr />
-      <TodoEntryList todos={props.todos} onDoneChanged={props.onDoneChanged} filterFunction={(todo) => todo.done} />
+      <TodoEntryList
+        todos={props.todos}
+        onDoneChanged={props.onDoneChanged}
+        onDeleteEntry={props.onDeleteEntry}
+        filterFunction={(todo) => todo.done}
+      />
     </div>
   );
 }
@@ -26,7 +36,14 @@ function TodoEntryList(props) {
             ></input>
             <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>{todo.text}</span>
           </label>
-          <button className='btn-delete'>Delete</button>
+          <button
+            className='btn-delete'
+            onClick={() => {
+              props.onDeleteEntry && props.onDeleteEntry(todo.id);
+            }}
+          >
+            Delete
+          </button>
         </div>
       ))}
     </div>

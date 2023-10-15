@@ -11,16 +11,19 @@ function App() {
       <div className='app'>
         <TodoInput
           onAddClicked={(todoText) => {
-            setTodos((oldTodos) => [...oldTodos, { id: (Date.now()).toString(), text: todoText, done: false }]);
+            setTodos((oldTodos) => [...oldTodos, { id: Date.now().toString(), text: todoText, done: false }]);
             console.log(todos);
           }}
         />
         <TodoList
           todos={todos}
           onDoneChanged={(done, id) => {
-            setTodos((oldTodos) =>
-              oldTodos.map((todo) => (id === todo.id ? Object.assign(todo, { done }) : todo))
-            );
+            setTodos((oldTodos) => oldTodos.map((todo) => (id === todo.id ? Object.assign(todo, { done }) : todo)));
+          }}
+          onDeleteEntry={(id) => {
+            setTodos((oldTodos) => {
+              return oldTodos.filter((todo) => id !== todo.id);
+            });
           }}
         />
       </div>
