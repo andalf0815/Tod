@@ -9,7 +9,14 @@ function TodoList(props) {
         onDeleteEntry={props.onDeleteEntry}
         filterFunction={(todo) => !todo.done}
       />
-      <hr />
+      {/* Render the line between done and not done todos only if both exists */}
+      {props.todos.filter((todo) => todo.done === true).length > 0 &&
+      props.todos.filter((todo) => todo.done === false).length > 0 ? (
+        <hr />
+      ) : (
+        ''
+      )}
+
       <TodoEntryList
         todos={props.todos}
         onDoneChanged={props.onDoneChanged}

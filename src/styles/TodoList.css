@@ -1,17 +1,23 @@
-.todo-list .todo-entry {
+.todo-lists {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.todo-lists .todo-list .todo-entry {
   display: flex;
   justify-content: space-between;
 }
 
-.todo-list .todo-entry * {
+.todo-lists .todo-list .todo-entry * {
   cursor: pointer;
 }
 
-.todo-list .todo-entry label {
+.todo-lists .todo-list .todo-entry label {
   display: flex;
   gap: 5px;
 }
 
-.todo-list .todo-entry .btn-delete {
+.todo-lists .todo-list .todo-entry .btn-delete {
   width: 60px;
 }
