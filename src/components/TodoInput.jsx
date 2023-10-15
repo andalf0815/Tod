@@ -1,3 +1,5 @@
+import '../styles/TodoInput.min.css';
+
 import { useState } from 'react';
 
 function TodoInput({ onAddClicked }) {
@@ -27,7 +29,7 @@ function TodoInput({ onAddClicked }) {
         }}
         onKeyDown={handleKeyDown}
       />
-      <button onClick={handleAdd}>Add</button>
+      <button className="btn-add" onClick={handleAdd}>Add</button>
     </div>
   );
 }

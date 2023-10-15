@@ -1,3 +1,17 @@
+.todo-list .todo-entry {
+  display: flex;
+  justify-content: space-between;
+}
+
 .todo-list .todo-entry * {
   cursor: pointer;
+}
+
+.todo-list .todo-entry label {
+  display: flex;
+  gap: 5px;
+}
+
+.todo-list .todo-entry .btn-delete {
+  width: 60px;
 }
