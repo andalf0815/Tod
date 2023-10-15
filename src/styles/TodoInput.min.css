@@ -1,1 +1,1 @@
-.todo-input{display:flex;gap:10px}.todo-input .btn-add{width:60px}
+.todo-input{display:flex;gap:10px}.todo-input>input{border:none;border-bottom:1px solid black}.todo-input .btn-add{width:60px}

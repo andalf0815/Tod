@@ -20,8 +20,8 @@ function TodoInput({ onAddClicked }) {
 
   return (
     <div className='todo-input'>
-      <span>New Todo:</span>
       <input
+        placeholder='Enter Todo'
         type='text'
         value={todoText}
         onChange={(event) => {
@@ -29,7 +29,9 @@ function TodoInput({ onAddClicked }) {
         }}
         onKeyDown={handleKeyDown}
       />
-      <button className="btn-add" onClick={handleAdd}>Add</button>
+      <button className='btn-add' onClick={handleAdd}>
+        Add
+      </button>
     </div>
   );
 }

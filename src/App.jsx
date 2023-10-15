@@ -5,24 +5,36 @@ import TodoList from './components/TodoList';
 
 function App() {
   const [todos, setTodos] = useState([]);
-
+  
+  useEffect(() => {
+    setTodos(loadTodos());
+  }, []);
   return (
     <>
       <div className='app'>
         <TodoInput
           onAddClicked={(todoText) => {
-            setTodos((oldTodos) => [...oldTodos, { id: Date.now().toString(), text: todoText, done: false }]);
-            console.log(todos);
+            setTodos((oldTodos) => {
+              const newTodos = [...oldTodos, { id: Date.now().toString(), text: todoText, done: false }];
+              save(newTodos);
+              return newTodos;
+            });
           }}
         />
         <TodoList
           todos={todos}
           onDoneChanged={(done, id) => {
-            setTodos((oldTodos) => oldTodos.map((todo) => (id === todo.id ? Object.assign(todo, { done }) : todo)));
+            setTodos((oldTodos) => {
+              const newTodos = oldTodos.map((todo) => (id === todo.id ? Object.assign(todo, { done }) : todo));
+              save(newTodos);
+              return newTodos;
+            });
           }}
           onDeleteEntry={(id) => {
             setTodos((oldTodos) => {
-              return oldTodos.filter((todo) => id !== todo.id);
+              const newTodos = oldTodos.filter((todo) => id !== todo.id);
+              save(newTodos);
+              return newTodos;
             });
           }}
         />
@@ -32,3 +44,11 @@ function App() {
 }
 
 export default App;
+
+function save(todos) {
+  window.localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function loadTodos() {
+  return JSON.parse(window.localStorage.getItem('todos'));
+}

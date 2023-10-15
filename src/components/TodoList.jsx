@@ -34,7 +34,9 @@ function TodoEntryList(props) {
                 props.onDoneChanged && props.onDoneChanged(checked, todo.id);
               }}
             ></input>
-            <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>{todo.text}</span>
+            <span style={{ color: todo.done ? 'gray' : 'black', textDecoration: todo.done ? 'line-through' : 'none' }}>
+              {todo.text}
+            </span>
           </label>
           <button
             className='btn-delete'
